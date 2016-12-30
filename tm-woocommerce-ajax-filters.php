@@ -68,6 +68,14 @@ class TM_WC_Ajax_Filters {
 	public $suffix;
 
 	/**
+	 * Plugin slug
+	 *
+	 * @since 1.0.0
+	 * @var   string
+	 */
+	public $plugin_slug = '';
+
+	/**
 	 * Main TM_Woocommerce Instance.
 	 *
 	 * Ensures only one instance of TM_Woocommerce is loaded or can be loaded.
@@ -99,6 +107,9 @@ class TM_WC_Ajax_Filters {
 
 			return false;
 		}
+
+		$this->plugin_slug = basename( dirname( __FILE__ ) );
+
 		define( 'TM_WC_AJAX_FILTERS_VERISON', '1.0.0' );
 
 		// Register admin assets.
@@ -122,6 +133,10 @@ class TM_WC_Ajax_Filters {
 		register_activation_hook( __FILE__, array( $this, 'tm_wc_ajax_filters_install' ) );
 
 		$this->set_suffix();
+
+		if ( is_admin() ) {
+			$this->_admin();
+		}
 	}
 
 	/**
@@ -214,6 +229,23 @@ class TM_WC_Ajax_Filters {
 
 			include_once 'includes/tm-wc-grid-list.php';
 		}
+	}
+
+	/**
+	 * Include files and assign actions and filters for admin
+	 *
+	 * @since 1.0.0
+	 */
+	private function _admin() {
+		require_once( 'admin/includes/class-cherry-update/class-cherry-plugin-update.php' );
+
+		$updater = new Cherry_Plugin_Update();
+		$updater->init( array(
+			'version'         => TM_WC_AJAX_FILTERS_VERISON,
+			'slug'            => $this->plugin_slug,
+			'repository_name' => $this->plugin_slug,
+			'product_name'    => 'templatemonster',
+		) );
 	}
 
 	public function register_widgets() {
