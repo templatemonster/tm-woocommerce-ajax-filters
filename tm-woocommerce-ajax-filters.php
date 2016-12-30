@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: TM WooCommerce Ajax Filters
- * Description:
+ * Description: Smart Ajax Filter for WooCommerce
  * Version:     1.0.0
  * Author:      TemplateMonster
  * Author URL:  http://www.templatemonster.com/wordpress-themes.php
