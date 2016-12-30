@@ -16,9 +16,9 @@ if ( class_exists( 'WC_Widget_Layered_Nav' ) ) {
 			parent::__construct();
 
 			$this->widget_cssclass    = 'woocommerce widget_price_filter widget_layered_nav widget_tm_woo_ajax_filters';
-			$this->widget_description = __( 'Shows an ajax filters in a widget which lets you narrow down the list of shown products when viewing product categories.', 'tm-wc-ajax-filters' );
+			$this->widget_description = __( 'Shows an ajax filters in a widget which lets you narrow down the list of shown products when viewing product categories.', 'tm-woocommerce-ajax-filters' );
 			$this->widget_id          = 'tm_woo_ajax_filters';
-			$this->widget_name        = __( 'TM WooCommerce Ajax Filters', 'tm-wc-ajax-filters' );
+			$this->widget_name        = __( 'TM WooCommerce Ajax Filters', 'tm-woocommerce-ajax-filters' );
 
 			WC_Widget::__construct();
 
@@ -50,11 +50,11 @@ if ( class_exists( 'WC_Widget_Layered_Nav' ) ) {
 		public function init_settings() {
 			parent::init_settings();
 
-			$this->settings['title']['std'] = __( 'Filter', 'tm-wc-ajax-filters' );
+			$this->settings['title']['std'] = __( 'Filter', 'tm-woocommerce-ajax-filters' );
 
 			$display_type_options = array(
-				'slider' => __( 'Slider', 'tm-wc-ajax-filters' ),
-				'inputs' => __( 'Inputs', 'tm-wc-ajax-filters' )
+				'slider' => __( 'Slider', 'tm-woocommerce-ajax-filters' ),
+				'inputs' => __( 'Inputs', 'tm-woocommerce-ajax-filters' )
 			);
 
 			$this->settings['display_type']['options'] = array_merge( $this->settings['display_type']['options'], $display_type_options );
@@ -86,7 +86,7 @@ if ( class_exists( 'WC_Widget_Layered_Nav' ) ) {
 					if( $min ) {
 
 						$min_price = wc_price( esc_attr( $_GET['min_price'] ) );
-						$from_text = __( 'from', 'tm-wc-ajax-filters' );
+						$from_text = __( 'from', 'tm-woocommerce-ajax-filters' );
 						$html      = sprintf( '%s <span class="tm-wc-ajax-filters-price-from">%s</span>', $from_text, $min_price );
 
 						echo apply_filters( 'tw_wc_price_filters_from', $html, $from_text, $min_price );
@@ -94,7 +94,7 @@ if ( class_exists( 'WC_Widget_Layered_Nav' ) ) {
 					if( $max ) {
 
 						$max_price = wc_price( esc_attr( $_GET['max_price'] ) );
-						$to_text   = __( 'to', 'tm-wc-ajax-filters' );
+						$to_text   = __( 'to', 'tm-woocommerce-ajax-filters' );
 						$html      = sprintf( '%s <span class="tm-wc-ajax-filters-price-to">%s</span>', $to_text, $max_price );
 
 						echo ' ' . apply_filters( 'tw_wc_price_filters_to', $html, $to_text, $max_price );
@@ -216,7 +216,7 @@ if ( class_exists( 'WC_Widget_Layered_Nav' ) ) {
 					}
 				}
 
-				$reset_text = __( 'Clear all', 'tm-wc-ajax-filters' );
+				$reset_text = __( 'Clear all', 'tm-woocommerce-ajax-filters' );
 				$html       = sprintf( ' <a class="tm-wc-ajax-filters-reset button" href="%s">%s</a>', $reset_link, $reset_text );
 
 				echo apply_filters( 'tw_wc_price_filters__reset_link', $html, $reset_link, $reset_text );
@@ -466,8 +466,8 @@ class TM_Woo_Extended_Price_Widget extends WC_Widget_Price_Filter {
 			echo '<div class="price_slider_wrapper">
 					<div class="tm_wc_price_slider"></div>
 					<div class="price_slider_amount">
-						<input type="text" id="min_price" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" placeholder="' . esc_attr__( 'Min price', 'tm-wc-ajax-filters' ) . '">
-						<input type="text" id="max_price" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" placeholder="' . esc_attr__( 'Max price', 'tm-wc-ajax-filters' ) . '">
+						<input type="text" id="min_price" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" placeholder="' . esc_attr__( 'Min price', 'tm-woocommerce-ajax-filters' ) . '">
+						<input type="text" id="max_price" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" placeholder="' . esc_attr__( 'Max price', 'tm-woocommerce-ajax-filters' ) . '">
 						<div class="price_label">
 							' . __( 'Price:', 'tm-wc-ajax-filters' ) . ' <span class="from">' . wc_price( esc_attr( $min_price ) ) . '</span> &mdash; <span class="to">' . wc_price( esc_attr( $max_price ) ) . '</span>
 						</div>
@@ -479,10 +479,10 @@ class TM_Woo_Extended_Price_Widget extends WC_Widget_Price_Filter {
 
 			echo '<div class="tm_wc_price_filter_inputs_wrapper">
 				<div class="tm_wc_price_filter_inputs">
-					<input type="number" class="input-text" step="1" min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" placeholder="' . esc_attr__( 'Min price', 'tm-wc-ajax-filters' ) . '">
-					<input type="number" class="input-text" step="1" min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" placeholder="' . esc_attr__( 'Max price', 'tm-wc-ajax-filters' ) . '">
+					<input type="number" class="input-text" step="1" min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" placeholder="' . esc_attr__( 'Min price', 'tm-woocommerce-ajax-filters' ) . '">
+					<input type="number" class="input-text" step="1" min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" placeholder="' . esc_attr__( 'Max price', 'tm-woocommerce-ajax-filters' ) . '">
 				</div>
-				<button type="button" class="button btn btn-default">' . __( 'Filter', 'tm-wc-ajax-filters' ) . '</button>
+				<button type="button" class="button btn btn-default">' . __( 'Filter', 'tm-woocommerce-ajax-filters' ) . '</button>
 			</div>';
 		}
 		echo '</form>';

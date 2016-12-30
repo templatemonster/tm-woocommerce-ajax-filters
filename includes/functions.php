@@ -27,10 +27,10 @@ if ( ! function_exists( 'tm_wc_ajax_filters_shop_loop_subcategory_title' ) ) {
 
 			if ( 1 == $category->count ) {
 
-				$name = isset( $wp_query->queried_object->labels->singular_name ) ? $wp_query->queried_object->labels->singular_name : __( 'Product', 'tm-woocommerce-package' );
+				$name = isset( $wp_query->queried_object->labels->singular_name ) ? $wp_query->queried_object->labels->singular_name : __( 'Product', 'tm-woocommerce-ajax-filters' );
 			} else {
 
-				$name = isset( $wp_query->queried_object->labels->name ) ? $wp_query->queried_object->labels->name : __( 'Products', 'tm-woocommerce-package' );
+				$name = isset( $wp_query->queried_object->labels->name ) ? $wp_query->queried_object->labels->name : __( 'Products', 'tm-woocommerce-ajax-filters' );
 			}
 
 			echo apply_filters( 'woocommerce_subcategory_count_html_list', ' <div class="count"><span>' . $category->count . '</span> ' . $name . '</div>', $category );

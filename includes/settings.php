@@ -13,52 +13,52 @@ function tm_wc_ajax_get_settings() {
 		array(
 			'id'    => 'general-options',
 			'type'  => 'title',
-			'title' => __( 'General Options', 'tm-wc-compare-wishlist' ),
+			'title' => __( 'General Options', 'tm-woocommerce-ajax-filters' ),
 		),
 		array(
 			'type'    => 'checkbox',
 			'id'      => 'tm_wc_ajax_filters_grid_list_enable',
-			'title'   => __( 'Enable grid-list', 'tm-wc-ajax-filters' ),
-			'desc'    => __( 'Enable grid-list layout toggle button', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Enable grid-list', 'tm-woocommerce-ajax-filters' ),
+			'desc'    => __( 'Enable grid-list layout toggle button', 'tm-woocommerce-ajax-filters' ),
 			'default' => 'yes'
 		),
 		array(
 			'type'    => 'checkbox',
 			'id'      => 'tm_wc_ajax_filters_ordering_enable',
-			'title'   => __( 'Enable AJAX ordering', 'tm-wc-ajax-filters' ),
-			'desc'    => __( 'Enable AJAX functionality on ordering', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Enable AJAX ordering', 'tm-woocommerce-ajax-filters' ),
+			'desc'    => __( 'Enable AJAX functionality on ordering', 'tm-woocommerce-ajax-filters' ),
 			'default' => 'yes'
 		),
 		array(
 			'type'    => 'checkbox',
 			'id'      => 'tm_wc_ajax_filters_pagination_enable',
-			'title'   => __( 'Enable AJAX pagination', 'tm-wc-ajax-filters' ),
-			'desc'    => __( 'Enable AJAX functionality on pagination', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Enable AJAX pagination', 'tm-woocommerce-ajax-filters' ),
+			'desc'    => __( 'Enable AJAX functionality on pagination', 'tm-woocommerce-ajax-filters' ),
 			'default' => 'yes'
 		),
 		array(
 			'type'    => 'checkbox',
 			'id'      => 'tm_wc_ajax_filters_loadmore_enable',
-			'title'   => __( 'Enable AJAX Load More button', 'tm-wc-ajax-filters' ),
-			'desc'    => __( 'Enable AJAX Load More button', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Enable AJAX Load More button', 'tm-woocommerce-ajax-filters' ),
+			'desc'    => __( 'Enable AJAX Load More button', 'tm-woocommerce-ajax-filters' ),
 			'default' => 'yes'
 		),
 		array(
 			'type'    => 'text',
 			'id'      => 'tm_wc_ajax_filters_loadmore_label',
-			'title'   => __( 'Load More button label', 'tm-wc-ajax-filters' ),
-			'default' => __( 'Load more', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Load More button label', 'tm-woocommerce-ajax-filters' ),
+			'default' => __( 'Load more', 'tm-woocommerce-ajax-filters' ),
 		),
 		array(
 			'type'    => 'number',
 			'id'      => 'tm_wc_ajax_filters_loadmore_treshold',
-			'title'   => __( 'Load more threshold on desktop', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Load more threshold on desktop', 'tm-woocommerce-ajax-filters' ),
 			'default' => 20
 		),
 		array(
 			'type'    => 'number',
 			'id'      => 'tm_wc_ajax_filters_loadmore_treshold_mobile',
-			'title'   => __( 'Load more threshold on mobile', 'tm-wc-ajax-filters' ),
+			'title'   => __( 'Load more threshold on mobile', 'tm-woocommerce-ajax-filters' ),
 			'default' => 20
 		),
 		array( 'type' => 'sectionend', 'id' => 'general-options' )
@@ -92,7 +92,7 @@ function tm_wc_ajax_register_settings() {
  */
 function tm_wc_ajax_register_settings_tab( $tabs ) {
 
-	$tabs['tm_wc_ajax'] = esc_html__( 'TM Ajax', 'tm-wc-ajax-filters' );
+	$tabs['tm_wc_ajax'] = esc_html__( 'TM Ajax', 'tm-woocommerce-ajax-filters' );
 
 	return $tabs;
 }

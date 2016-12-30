@@ -1,10 +1,15 @@
 <?php
-/*
-	Plugin Name: TM WooCommerce Ajax Filters
-	Version: 1.0.0
-	Author: TemplateMonster
-	Author URI: http://www.templatemonster.com/
-*/
+/**
+ * Plugin Name: TM WooCommerce Ajax Filters
+ * Description:
+ * Version:     1.0.0
+ * Author:      TemplateMonster
+ * Author URL:  http://www.templatemonster.com/wordpress-themes.php
+ * Text Domain: tm-woocommerce-ajax-filters
+ * License:     GPL-3.0+
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+ * Domain Path: /languages
+ */
 
 /*  This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -166,7 +171,7 @@ class TM_WC_Ajax_Filters {
 		$details_link = self_admin_url( 'plugin-install.php?tab=plugin-information&amp;plugin=woocommerce&amp;TB_iframe=true&amp;width=600&amp;height=550' );
 		?>
 		<div class="notice notice-warning is-dismissible">
-			<p><?php printf( __( 'TM WooCommerce Ajax Filters is enabled but not effective. It requires %s in order to work. Please install and activate it.', 'tm-wc-compare-wishlist' ), '<a href="' . esc_url( $details_link ) . '" class="thickbox open-plugin-details-modal">' . __( 'WooCommerce', 'tm-wc-compare-wishlist' ) . '</a>' ); ?></p>
+			<p><?php printf( __( 'TM WooCommerce Ajax Filters is enabled but not effective. It requires %s in order to work. Please install and activate it.', 'tm-woocommerce-ajax-filters' ), '<a href="' . esc_url( $details_link ) . '" class="thickbox open-plugin-details-modal">' . __( 'WooCommerce', 'tm-woocommerce-ajax-filters' ) . '</a>' ); ?></p>
 		</div>
 		<?php
 	}
@@ -178,7 +183,7 @@ class TM_WC_Ajax_Filters {
 	 */
 	function lang() {
 
-		load_plugin_textdomain( 'tm-wc-ajax-filters', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'tm-woocommerce-ajax-filters', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
