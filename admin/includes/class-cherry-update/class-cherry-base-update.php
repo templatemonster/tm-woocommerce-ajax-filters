@@ -124,18 +124,19 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		 * Rename github folder on update.
 		 *
 		 * @since  1.0.0
-		 * @param  string $upgrate_dir   Theme folder name.
-		 * @param  string $remote_dir    Remote folder name.
-		 * @param  object $skin_upgrader Upgrader object instance.
+		 * @param  string      $upgrate_dir   File source location.
+		 * @param  string      $remote_dir    Remote file source location.
+		 * @param  WP_Upgrader $skin_upgrader WP_Upgrader instance.
+		 * @param  array       $hook_extra    Extra arguments passed to hooked filters.
 		 * @return string
 		 */
-		public function rename_github_folder( $upgrate_dir, $remote_dir, $skin_upgrader ) {
+		public function rename_github_folder( $upgrate_dir, $remote_dir, $skin_upgrader, $hook_extra ) {
 			$slug          = $this->api['slug'];
-			$is_theme      = isset( $skin_upgrader->skin->theme ) || isset( $skin_upgrader->skin->theme_info ) ? true : false ;
-			$is_plugin     = isset( $skin_upgrader->skin->plugin_info ) ? true : false ;
-			$domain_plugin = $is_plugin ? $skin_upgrader->skin->plugin_info['TextDomain'] : '' ;
-			$title_plugin  = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Title'] ) ) : '' ;
-			$name_plugin   = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Name'] ) ) : '' ;
+			$is_theme      = isset( $skin_upgrader->skin->theme ) || isset( $skin_upgrader->skin->theme_info ) ? true : false;
+			$is_plugin     = isset( $skin_upgrader->skin->plugin_info ) ? true : false;
+			$domain_plugin = $is_plugin ? $skin_upgrader->skin->plugin_info['TextDomain'] : '';
+			$title_plugin  = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Title'] ) ) : '';
+			$name_plugin   = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Name'] ) ) : '';
 
 			if ( $is_theme && strpos( $upgrate_dir, $slug ) !== false
 				|| $is_plugin && $domain_plugin === $slug
@@ -149,7 +150,7 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 
 				$upgrate_dir = $new_upgrate_dir;
 
-				remove_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 3 );
+				remove_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 4 );
 			}
 
 			return $upgrate_dir;

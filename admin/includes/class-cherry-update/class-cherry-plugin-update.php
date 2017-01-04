@@ -45,7 +45,7 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 			 */
 
 			add_action( 'pre_set_site_transient_update_plugins', array( $this, 'update' ) );
-			add_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 3 );
+			add_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 4 );
 			add_action( 'admin_footer', array( $this, 'change_details_url' ) );
 		}
 
