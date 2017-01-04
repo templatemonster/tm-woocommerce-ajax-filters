@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TM WooCommerce Ajax Filters
  * Description: Smart Ajax Filter for WooCommerce
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      TemplateMonster
  * Author URL:  http://www.templatemonster.com/wordpress-themes.php
  * Text Domain: tm-woocommerce-ajax-filters
@@ -110,7 +110,7 @@ class TM_WC_Ajax_Filters {
 
 		$this->plugin_slug = basename( dirname( __FILE__ ) );
 
-		define( 'TM_WC_AJAX_FILTERS_VERISON', '1.0.0' );
+		define( 'TM_WC_AJAX_FILTERS_VERISON', '1.0.1' );
 
 		// Register admin assets.
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_assets' ), 9 );
