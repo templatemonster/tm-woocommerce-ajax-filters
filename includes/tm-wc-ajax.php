@@ -109,15 +109,14 @@ class TM_WooCommerce_Ajax {
 		}
 		if( $in_sidebar && !is_admin() ) {
 
-			echo '<div data-sidebar="' . $id . '">';
+			echo apply_filters( 'tm_wc_ajax_sidebar_before', '<div data-sidebar="' . $id . '">', $id );
 
 			add_action( 'dynamic_sidebar_after', array( $this, 'dynamic_sidebar_after' ) );
 		}
 	}
 
 	public function dynamic_sidebar_after( $id ) {
-
-		echo '</div>';
+		echo apply_filters( 'tm_wc_ajax_sidebar_after', '</div>', $id );
 	}
 
 	public function process_load_more_ajax() {
