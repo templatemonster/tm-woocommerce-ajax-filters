@@ -41,6 +41,10 @@ class TM_WC_Grid_List {
 
 	public function list_product_template_loader( $template, $slug, $name ) {
 
+		if ( ! is_shop() && ! is_product_taxonomy() ) {
+			return $template;
+		}
+
 		if ( 'content' === $slug && 'product' === $name && 'list' === $this->condition ) {
 
 			$name .= '-list';
@@ -88,7 +92,11 @@ class TM_WC_Grid_List {
 
 		if ( ! $post_id || 'product' !== get_post_type( $post_id ) ) {
 
-			return array_unique( $classes );
+			return $classes;
+		}
+
+		if ( ! is_shop() && ! is_product_taxonomy() ) {
+			return $classes;
 		}
 
 		$product = wc_get_product( $post_id );
