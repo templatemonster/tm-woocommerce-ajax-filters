@@ -41,7 +41,7 @@ class TM_WC_Grid_List {
 
 	public function list_product_template_loader( $template, $slug, $name ) {
 
-		if ( ! is_shop() && ! is_product_taxonomy() ) {
+		if ( ! $this->is_layout_option_active() ) {
 			return $template;
 		}
 
@@ -88,6 +88,22 @@ class TM_WC_Grid_List {
 		return $located;
 	}
 
+	public function is_layout_option_active() {
+
+		$is_active = false;
+
+		if ( is_shop() || is_product_taxonomy() ) {
+			$is_active = true;
+		}
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			$this->toggle_enabled = true;
+			$is_active            = true;
+		}
+
+		return $is_active;
+	}
+
 	public function add_product_class( $classes, $class = '', $post_id = '' ) {
 
 		if ( ! $post_id || 'product' !== get_post_type( $post_id ) ) {
@@ -95,7 +111,7 @@ class TM_WC_Grid_List {
 			return $classes;
 		}
 
-		if ( ! is_shop() && ! is_product_taxonomy() ) {
+		if ( ! $this->is_layout_option_active() ) {
 			return $classes;
 		}
 
