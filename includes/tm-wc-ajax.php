@@ -117,6 +117,7 @@ class TM_WooCommerce_Ajax {
 
 	public function dynamic_sidebar_after( $id ) {
 		echo apply_filters( 'tm_wc_ajax_sidebar_after', '</div>', $id );
+		remove_action( 'dynamic_sidebar_after', array( $this, 'dynamic_sidebar_after' ) );
 	}
 
 	public function process_load_more_ajax() {
