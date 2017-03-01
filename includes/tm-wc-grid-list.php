@@ -10,10 +10,9 @@ class TM_WC_Grid_List {
 	protected static $_instance = null;
 
 	public $condition;
-
 	public $query_vars;
-
 	public $toggle_enabled = false;
+	public $is_shop_loop = false;
 
 	public function __construct() {
 
@@ -28,6 +27,23 @@ class TM_WC_Grid_List {
 		add_filter( 'post_class', array( $this, 'add_product_class' ), 30, 3 );
 
 		add_filter( 'product_cat_class', array( $this, 'add_category_class' ), 10, 3 );
+
+		add_action( 'woocommerce_before_main_content', array( $this, 'set_gl_trigger' ) );
+		add_action( 'woocommerce_after_main_content', array( $this, 'unset_gl_trigger' ) );
+	}
+
+	/**
+	 * Set main shop loop trigger
+	 */
+	public function set_gl_trigger() {
+		$this->is_shop_loop = true;
+	}
+
+	/**
+	 * Set main shop loop trigger
+	 */
+	public function unset_gl_trigger() {
+		$this->is_shop_loop = false;
 	}
 
 	public static function instance() {
@@ -99,6 +115,8 @@ class TM_WC_Grid_List {
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			$this->toggle_enabled = true;
 			$is_active            = true;
+		} else {
+			$is_active = $this->is_shop_loop;
 		}
 
 		return $is_active;
