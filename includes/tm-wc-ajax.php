@@ -428,7 +428,7 @@ class TM_WooCommerce_Ajax {
 
 	public function load_more_button() {
 
-		if( 'yes' !== get_option( 'tm_wc_ajax_filters_loadmore_enable' ) ) {
+		if( 'yes' !== get_option( 'tm_wc_ajax_filters_loadmore_enable', 'yes' ) ) {
 
 			return;
 		}

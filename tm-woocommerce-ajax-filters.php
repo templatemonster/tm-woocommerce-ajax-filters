@@ -210,7 +210,7 @@ class TM_WC_Ajax_Filters {
 
 		include_once 'includes/settings.php';
 
-		if ( 'yes' === get_option( 'tm_wc_ajax_filters_grid_list_enable' ) ) {
+		if ( 'yes' === get_option( 'tm_wc_ajax_filters_grid_list_enable', 'yes' ) ) {
 
 			include_once 'includes/tm-wc-grid-list.php';
 		}
@@ -260,8 +260,8 @@ class TM_WC_Ajax_Filters {
 
 		wp_localize_script( 'tm-wc-ajax-products', 'tmWooAjaxProducts', array(
 			'ajaxurl'        => admin_url( 'admin-ajax.php', is_ssl() ? 'https' : 'http' ),
-			'ajaxOrderby'    => 'yes' === get_option( 'tm_wc_ajax_filters_ordering_enable' )   ? true : false,
-			'ajaxPagination' => 'yes' === get_option( 'tm_wc_ajax_filters_pagination_enable' ) ? true : false
+			'ajaxOrderby'    => 'yes' === get_option( 'tm_wc_ajax_filters_ordering_enable', 'yes' )   ? true : false,
+			'ajaxPagination' => 'yes' === get_option( 'tm_wc_ajax_filters_pagination_enable', 'yes' ) ? true : false
 		) );
 
 		wp_register_script( 'tm-wc-ajax-product-filters', $this->plugin_url() . '/assets/js/tm-wc-ajax-product-filters' . $this->suffix . '.js', array( 'tm-wc-ajax-products' ), TM_WC_AJAX_FILTERS_VERISON, true );
