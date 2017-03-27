@@ -28,8 +28,8 @@ class TM_WC_Grid_List {
 
 		add_filter( 'product_cat_class', array( $this, 'add_category_class' ), 10, 3 );
 
-		add_action( 'woocommerce_before_main_content', array( $this, 'set_gl_trigger' ) );
-		add_action( 'woocommerce_after_main_content', array( $this, 'unset_gl_trigger' ) );
+		add_action( 'woocommerce_before_shop_loop', array( $this, 'set_gl_trigger' ) );
+		add_action( 'woocommerce_after_shop_loop',  array( $this, 'unset_gl_trigger' ) );
 	}
 
 	/**
