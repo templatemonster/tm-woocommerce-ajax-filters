@@ -536,15 +536,24 @@ class TM_Woo_Extended_Price_Widget extends WC_Widget_Price_Filter {
 
 			global $product;
 
-			$result->max_price = max( $result->max_price, $product->price );
+
+
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0', '>=' ) ) {
+				$price = $product->get_price();
+			} else {
+				$price = $product->price;
+			}
+
+			$result->max_price = max( $result->max_price, $price );
 
 			if( isset( $result->min_price ) ) {
 
-				$result->min_price = min( $result->min_price, $product->price );
+				$result->min_price = min( $result->min_price, $price );
 
 				continue;
 			}
-			$result->min_price = $product->price;
+
+			$result->min_price = $price;
 
 		endwhile;
 
