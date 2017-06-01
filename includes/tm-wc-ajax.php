@@ -181,9 +181,21 @@ class TM_WooCommerce_Ajax {
 
 	}
 
-	public function process_ajax() {
+	public function maybe_get_args_from_url( $url ) {
 
-		ob_start();
+		$query = parse_url( $url, PHP_URL_QUERY );
+
+		if ( ! $query ) {
+			return array();
+		}
+
+		parse_str( $query, $args );
+
+		return $args;
+
+	}
+
+	public function process_ajax() {
 
 		$page_url      = $_POST['pageUrl'];
 		$wcbreadcrumbs = isset( $_POST['wcbreadcrumbs'] ) ? ( bool ) json_decode( $_POST['wcbreadcrumbs'] ) : false;
@@ -200,10 +212,16 @@ class TM_WooCommerce_Ajax {
 
 		parse_str( parse_url( $page_url, PHP_URL_QUERY ), $_GET );
 
+		if ( empty( $args ) ) {
+			$args = $this->maybe_get_args_from_url( $page_url );
+		}
+
 		$wcquery = new TM_WC_Query();
 		$posts   = new WP_Query( $args );
 
 		$GLOBALS['wp_the_query'] = $GLOBALS['wp_query'] = $posts;
+
+		ob_start();
 
 		if ( have_posts() ) :
 
@@ -431,6 +449,11 @@ class TM_WooCommerce_Ajax {
 
 		if( 'yes' !== get_option( 'tm_wc_ajax_filters_loadmore_enable', 'yes' ) ) {
 
+			return;
+		}
+
+		if ( ! empty( $_REQUEST['s'] ) && ! empty( $_REQUEST['post_type'] ) ) {
+			// Hide load more from search results page
 			return;
 		}
 
