@@ -469,7 +469,7 @@ class TM_Woo_Extended_Price_Widget extends WC_Widget_Price_Filter {
 						<input type="text" id="min_price" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_min_amount', $min ) ) . '" placeholder="' . esc_attr__( 'Min price', 'tm-woocommerce-ajax-filters' ) . '">
 						<input type="text" id="max_price" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( apply_filters( 'woocommerce_price_filter_widget_max_amount', $max ) ) . '" placeholder="' . esc_attr__( 'Max price', 'tm-woocommerce-ajax-filters' ) . '">
 						<div class="price_label">
-							' . __( 'Price:', 'tm-wc-ajax-filters' ) . ' <span class="from">' . wc_price( esc_attr( $min_price ) ) . '</span> &mdash; <span class="to">' . wc_price( esc_attr( $max_price ) ) . '</span>
+							' . __( 'Price:', 'tm-woocommerce-ajax-filters' ) . ' <span class="from">' . wc_price( esc_attr( $min_price ) ) . '</span> &mdash; <span class="to">' . wc_price( esc_attr( $max_price ) ) . '</span>
 						</div>
 						<div class="clear"></div>
 					</div>

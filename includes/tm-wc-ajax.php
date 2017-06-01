@@ -107,6 +107,7 @@ class TM_WooCommerce_Ajax {
 				}
 			}
 		}
+
 		if( $in_sidebar && !is_admin() ) {
 
 			echo apply_filters( 'tm_wc_ajax_sidebar_before', '<div data-sidebar="' . $id . '">', $id );
@@ -481,7 +482,7 @@ class TM_WooCommerce_Ajax {
 				return;
 			}
 			$classes   = array( 'button', 'tm-wc-ajax-load-more-button', 'btn', 'btn-default' );
-			$text      = get_option( 'tm_wc_ajax_filters_loadmore_label', __( 'Load more', 'tm-wc-ajax-filters' ) );
+			$text      = get_option( 'tm_wc_ajax_filters_loadmore_label', __( 'Load more', 'tm-woocommerce-ajax-filters' ) );
 			$preloader = apply_filters( 'tm_wc_ajax_filters_button_preloader', '' );
 			$html      = sprintf( '<button  data-href="%s" type="button" class="%s">%s</button>', $link, implode( ' ', $classes ), $text . $preloader );
 
