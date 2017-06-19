@@ -16,7 +16,7 @@ class TM_WC_Grid_List {
 
 	public function __construct() {
 
-		$this->condition = isset( $_COOKIE['tm-woo-grid-list'] ) ? $_COOKIE['tm-woo-grid-list'] : 'grid';
+		$this->set_condition();
 
 		add_action( 'woocommerce_before_shop_loop', array( $this, 'add_toggle_button' ), 40 );
 
@@ -30,6 +30,23 @@ class TM_WC_Grid_List {
 
 		add_action( 'woocommerce_before_shop_loop', array( $this, 'set_gl_trigger' ) );
 		add_action( 'woocommerce_after_shop_loop',  array( $this, 'unset_gl_trigger' ) );
+	}
+
+	/**
+	 * Set grid/list condition
+	 */
+	public function set_condition() {
+
+		$gl = array( 'grid', 'list' );
+
+		// Directly passed in request value has much priority
+		if ( isset( $_REQUEST['glCondition'] ) && in_array( $_REQUEST['glCondition'], $gl ) ) {
+			$this->condition = $_REQUEST['glCondition'];
+			return;
+		}
+
+		$this->condition = isset( $_COOKIE['tm-woo-grid-list'] ) ? $_COOKIE['tm-woo-grid-list'] : 'grid';
+
 	}
 
 	/**

@@ -113,7 +113,8 @@
 		var condition = event.currentTarget.dataset.condition,
 			data      = {
 				pageUrl: location.href,
-				pageRef: toggler.closest( '.tm-woo-grid-list-toggle-button-wrapper' ).data( 'page-referrer' )
+				pageRef: toggler.closest( '.tm-woo-grid-list-toggle-button-wrapper' ).data( 'page-referrer' ),
+				glCondition: condition
 			};
 
 		$.cookie( cookie, condition, { expires: 365, path: '/' } );
