@@ -136,6 +136,7 @@ class TM_WooCommerce_Ajax {
 		$wp->parse_request();
 
 		$args = $wp->query_vars;
+		$args = array_merge( $args, $this->maybe_get_args_from_url( $page_url ) );
 
 		parse_str( parse_url( $page_url, PHP_URL_QUERY ), $_GET );
 
@@ -201,7 +202,14 @@ class TM_WooCommerce_Ajax {
 		$wcbreadcrumbs = isset( $_POST['wcbreadcrumbs'] ) ? ( bool ) json_decode( $_POST['wcbreadcrumbs'] ) : false;
 		$task          = isset( $_POST['task'] )          ? $_POST['task']                                  : '';
 
-		$_SERVER['REQUEST_URI'] = parse_url( $page_url, PHP_URL_PATH );
+		$request_path  = parse_url( $page_url, PHP_URL_PATH );
+		$request_query = parse_url( $page_url, PHP_URL_QUERY );
+
+		if ( ! empty( $request_query ) ) {
+			$request_path .= '?' . $request_query;
+		}
+
+		$_SERVER['REQUEST_URI'] = $request_path;
 		$_SERVER['PHP_SELF']    = str_replace( 'wp-admin/admin-ajax', 'index', $_SERVER['PHP_SELF'] );
 
 		global $wp;
@@ -212,9 +220,7 @@ class TM_WooCommerce_Ajax {
 
 		parse_str( parse_url( $page_url, PHP_URL_QUERY ), $_GET );
 
-		if ( empty( $args ) ) {
-			$args = $this->maybe_get_args_from_url( $page_url );
-		}
+		$args = array_merge( $args, $this->maybe_get_args_from_url( $page_url ) );
 
 		$wcquery = new TM_WC_Query();
 		$posts   = new WP_Query( $args );
